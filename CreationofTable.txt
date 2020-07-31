@@ -1,0 +1,38 @@
+package Bank;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class Banking {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+       createTable();
+	}
+public static void createTable() throws Exception{
+	try {
+		Connection con= getConnection();
+		PreparedStatement create = con.prepareStatement("create table accounttable1 (Username varchar(50) , AccountNo int(50) ,TranscationId int(50),TranscationState varchar(50),AmmountTransferred int(50),Balance int(50)");
+		
+		create.executeUpdate();
+	}catch(Exception e) {System.out.println(e);}
+	finally {System.out.println("Function complete");
+	}
+}
+	 public static Connection getConnection() throws Exception{
+			try {
+				String driver="com.mysql.jdbc.Driver";
+				String url="jdbc:mysql://localhost:3306/BankingApplication1";
+			    String name="student";
+				String password="student";
+				Connection conn=null;
+				Class.forName(driver);
+				conn=DriverManager.getConnection(url,name,password);
+				System.out.println("Connected");
+				return conn;
+			}catch(Exception e) {System.out.println(e);}
+			return null;
+		}
+
+}
+
